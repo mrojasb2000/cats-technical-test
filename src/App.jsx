@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import './App.css'
 
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 const CAT_ENDPOINT_RANDOM_FACT = 'https://catfact.ninja/fact'
@@ -40,8 +41,11 @@ export function App () {
   return (
     <main>
       <h1>App de Gatitos</h1>
-      {fact && <p>{fact}</p>}
-      {imageUrl && <img src={`${CAT_PREFIX_IMAGE_URL}${imageUrl}`} alt={`Image extracted using the first three words for ${fact}`} />}
+      <section>
+
+        {fact && <p>{fact}</p>}
+        {imageUrl && <img src={`${CAT_PREFIX_IMAGE_URL}${imageUrl}`} alt={`Image extracted using the first three words for ${fact}`} />}
+      </section>
     </main>
   )
 }
