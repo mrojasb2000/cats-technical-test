@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 
+const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 const CAT_ENDPOINT_RANDOM_FACT = 'https://catfact.ninja/fact'
-// const CAT_ENDPOINT_IMAGE_URL = `https://catas.com/cat/says/${firstWords}?size=50&color=red&json=true`
+// const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${firstWords}?size=50&color=red&json=true`
 
 export function App () {
   const [fact, setFact] = useState()
@@ -26,7 +27,9 @@ export function App () {
       fetch(`https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`)
         .then(res => res.json())
         .then(response => {
-          const { url } = response
+          console.log(response)
+          const { _id } = response
+          const url = `/cat/${_id}/says/${threeFirstWords}`
           setImageUrl(url)
         })
     }
@@ -38,7 +41,7 @@ export function App () {
     <main>
       <h1>App de Gatitos</h1>
       {fact && <p>{fact}</p>}
-      {imageUrl && <img src='{imageUrl}' alt='{threeFirstWords}' />}
+      {imageUrl && <img src={`${CAT_PREFIX_IMAGE_URL}${imageUrl}`} alt={`Image extracted using the first three words for ${fact}`} />}
     </main>
   )
 }
